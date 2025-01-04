@@ -9,7 +9,7 @@ restart:
 migrate:
 	./vendor/bin/sail artisan migrate
 fresh:
-	./vendor/bin/sail artisan migrate:fresh
+	./vendor/bin/sail artisan migrate:fresh --seed
 bash:
 	./vendor/bin/sail exec laravel.test /bin/bash
 test:
