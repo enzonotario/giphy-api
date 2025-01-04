@@ -14,3 +14,5 @@ bash:
 	./vendor/bin/sail exec laravel.test /bin/bash
 test:
 	./vendor/bin/sail exec laravel.test php artisan test
+pint:
+	./vendor/bin/sail exec laravel.test ./vendor/bin/pint
