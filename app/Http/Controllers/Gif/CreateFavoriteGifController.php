@@ -6,7 +6,6 @@ use App\Http\Exceptions\GiphyException;
 use App\Http\Requests\CreateFavoriteGifRequest;
 use App\Models\Favorite;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class CreateFavoriteGifController
 {
