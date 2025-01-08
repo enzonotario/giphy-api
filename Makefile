@@ -1,11 +1,13 @@
 up:
 	./vendor/bin/sail up -d
-	./vendor/bin/sail exec laravel.test php artisan migrate
 down:
 	./vendor/bin/sail down
 restart:
 	./vendor/bin/sail down
 	./vendor/bin/sail up -d
+install:
+	./vendor/bin/sail exec laravel.test php artisan migrate
+	./vendor/bin/sail exec laravel.test php artisan passport:keys
 migrate:
 	./vendor/bin/sail artisan migrate
 fresh:
