@@ -311,6 +311,68 @@
                     }
                 }
             }
+        },
+        "/api/gifs/favorites": {
+            "post": {
+                "tags": [
+                    "GIFs"
+                ],
+                "summary": "Save a GIF as favorite",
+                "description": "Stores a particular GIF as a favorite for the authenticated user.",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "gif_id"
+                                ],
+                                "properties": {
+                                    "gif_id": {
+                                        "type": "string",
+                                        "description": "Giphy ID of the GIF to be saved (e.g., 'xT4uQulxzV39haRFjG')."
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "GIF successfully saved as favorite.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "favorite_id": {
+                                            "type": "integer"
+                                        },
+                                        "gif_id": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error (e.g., missing gif_id)."
+                    },
+                    "401": {
+                        "description": "Invalid or missing token (unauthorized)."
+                    },
+                    "409": {
+                        "description": "Conflict (the GIF is already a favorite)."
+                    }
+                }
+            }
         }
     },
     "components": {
