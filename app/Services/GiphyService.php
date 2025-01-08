@@ -34,4 +34,25 @@ class GiphyService
 
         return $response->json();
     }
+
+    public function getGifById(string $id): array
+    {
+        $url = $this->baseUrl.'gifs/'.$id;
+
+        $response = Http::get($url, [
+            'api_key' => $this->apiKey,
+        ]);
+
+        if ($response->notFound()) {
+            return [];
+        }
+
+        if ($response->failed()) {
+            throw new GiphyException(
+                sprintf('Failed to get GIF by ID. Response: %d %s', $response->status(), $response->body())
+            );
+        }
+
+        return $response->json();
+    }
 }

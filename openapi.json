@@ -264,6 +264,53 @@
                     }
                 }
             }
+        },
+        "/api/gifs/{id}": {
+            "get": {
+                "tags": [
+                    "GIFs"
+                ],
+                "summary": "Get a GIF by ID",
+                "description": "Fetch a single GIF by its Giphy ID.",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data of the requested GIF.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Gif"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Missing or invalid token (unauthorized)."
+                    },
+                    "404": {
+                        "description": "GIF not found on Giphy or invalid ID."
+                    }
+                }
+            }
         }
     },
     "components": {
